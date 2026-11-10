@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#09090a">
+<meta name="color-scheme" content="dark">
+<title>NEUROBAT – Réhabilitation de bureaux et sécurité réseau</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--blue:#2f7bff;--blue2:#4fc3ff;--bg:#09090a;--ink:#f1f1ef;--muted:#a0a0a0;--line:#2a2a2c;--soft:#bdbdbd;--soft2:#2a2a2c;--panel:#121214;--net:189,189,189;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+:root[data-theme="light"]{--bg:#f3f3f1;--ink:#111;--muted:#5c5c5c;--line:#d2d2d0;--soft:#6b6b6b;--soft2:#d4d4d4;--panel:#fff;--net:90,90,90;--blue:#1f63e0;--blue2:#1a62c4;color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Inter,system-ui,sans-serif;min-height:100%}
+#net{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+header,main,footer{position:relative;z-index:1}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;line-height:1.08}
+h1{font-size:clamp(2.5rem,7.2vw,5.4rem)}
+h2{font-size:clamp(1.8rem,4.2vw,3rem);margin-bottom:.5em}
+h3{font-size:1.2rem;letter-spacing:-.01em;margin-bottom:.4em}
+p{margin:0 0 1em;max-width:60ch;color:var(--muted)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:5;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;gap:20px}
+.brand{display:block;line-height:0}
+.brand svg{height:28px;width:auto}
+nav{display:flex;gap:6px}
+nav a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:4px;font-size:.95rem;font-weight:500}
+nav a:hover{color:var(--ink)}
+nav a[aria-current="page"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ink)}
+.page{display:none;padding-top:64px;min-height:100vh}
+.page.on{display:block}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);padding:13px 24px;border-radius:4px;text-decoration:none;font-weight:600;font-size:1rem;border:0;cursor:pointer;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);margin-left:10px}
+.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;justify-content:center;padding-top:40px;padding-bottom:80px}
+.hero p{font-size:1.2rem;margin:26px 0 32px;max-width:52ch}
+.hint{margin-top:56px;font-size:.85rem;color:var(--muted)}
+section{padding:90px 0}
+.glass{background:none}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.big{font-size:clamp(1.4rem,3vw,2.1rem);line-height:1.25;letter-spacing:-.02em;color:var(--ink);font-weight:500;max-width:30ch;margin:0 0 .9em}
+.big span{color:var(--muted)}
+.card{border:1px solid var(--line);background:var(--panel);padding:28px;border-radius:6px}
+.card p{margin:0;font-size:.98rem}
+.cable{position:relative;margin-top:40px;padding-left:56px}
+.cable::before,.cable i{content:"";position:absolute;left:11px;top:6px;width:2px;background:var(--line);height:calc(100% - 12px)}
+.cable i{background:var(--ink);height:0}
+.step{position:relative;padding-bottom:44px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-52px;top:5px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:.3s}
+.step.on::before{background:var(--ink);border-color:var(--ink)}
+.step h3{margin:0 0 .2em}.step p{margin:0}
+.tl{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:14px}
+.tl li{display:grid;grid-template-columns:170px 1fr;gap:20px;border-top:1px solid var(--line);padding-top:14px}
+.tl b{font-weight:600}.tl span{color:var(--muted)}
+.tag{display:inline-block;border:1px solid var(--ink);border-radius:99px;padding:5px 14px;font-size:.85rem;font-weight:600;margin-bottom:24px}
+.page .head{padding-top:80px;padding-bottom:20px}
+form{display:grid;gap:16px}
+label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
+input,textarea{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
+textarea{min-height:140px;resize:vertical}
+footer{border-top:1px solid var(--line);padding:30px 0;font-size:.88rem;color:var(--muted)}
+/* Méthode détaillée */
+.lead{font-size:1.12rem;max-width:62ch}
+.step .num{display:block;font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--blue2);margin-bottom:6px}
+.step h3{font-size:1.35rem}
+.step p{max-width:64ch}.step p+p{margin-top:.7em}
+.step .out{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.step .out li{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:4px 12px;font-size:.84rem;color:var(--soft)}
+.cable.long .step{padding-bottom:60px}
+.cable.long .step:last-child{padding-bottom:0}
+.cable i{background:linear-gradient(var(--blue),var(--blue2))}
+.step.on::before{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 5px color-mix(in srgb,var(--blue) 22%,transparent)}
+/* Page projet */
+.feat{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;padding:56px 0;border-top:1px solid var(--line)}
+.feat.rev>figure{order:-1}
+.feat h2{font-size:clamp(1.5rem,3vw,2.2rem)}
+.feat .kicker,.kicker{display:block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);margin-bottom:12px}
+.ex{border-left:2px solid var(--blue);padding:4px 0 4px 16px;margin:18px 0 0}
+.ex b{display:block;color:var(--ink);font-size:.92rem;margin-bottom:4px}
+.ex p{margin:0;font-size:.95rem}
+.list{margin:14px 0 0;padding-left:20px;color:var(--muted);max-width:60ch}
+.list li{margin-bottom:6px}
+figure{margin:0}
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px}
+.fig svg{display:block;width:100%;height:auto}
+.fig figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
+.fig text{fill:var(--muted);font:500 13px Inter,system-ui,sans-serif}
+.fig .ti{fill:var(--ink);font-weight:600}
+.fig .tb{fill:var(--blue2);font-weight:600}
+.k{stroke:var(--ink);fill:none}.s{stroke:var(--soft);fill:none}.b{stroke:var(--blue);fill:none}
+.gf{fill:var(--soft2)}.pf{fill:var(--panel)}.bf{fill:var(--blue)}.inkf{fill:var(--ink)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+.grid3 .card h3{font-size:1.1rem}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:.85rem;color:var(--muted);margin-top:10px}
+.legend span::before{content:"";display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:8px;background:var(--blue)}
+.legend span.w::before{height:10px;width:10px;border-radius:50%;border:2px solid var(--blue);background:none}
+.legend span.r::before{height:10px;width:10px;background:var(--ink)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.duo .card{padding:32px}
+.role{display:block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);margin-bottom:10px}
+section.cta{padding:20px 0 90px}
+.cta-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:36px;border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
+.cta-card h3{font-size:1.5rem}.cta-card p{margin:0}
+.swipe{display:none}
+@media(max-width:820px){
+.wrap{padding-left:16px;padding-right:16px}
+.page .head{padding-top:48px}
+.hero{min-height:auto;padding-top:64px;padding-bottom:64px}
+.hero p{font-size:1.08rem}
+.btn{padding:12px 20px}
+.btn.ghost{margin-left:8px}
+.cable{padding-left:44px}
+.step::before{left:-40px}
+.fig{padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.fig svg{min-width:520px}
+.swipe{display:block;font-size:.8rem;color:var(--muted);margin-top:8px}
+.cta-card{padding:24px}
+.duo .card{padding:24px}
+}
+@media(max-width:820px){.cta-card{flex-direction:column;align-items:flex-start}}
+@media(max-width:820px){.feat{grid-template-columns:1fr;gap:28px;padding:44px 0}.feat.rev>figure{order:0}.grid3,.duo{grid-template-columns:1fr}}
+@media(max-width:820px){.cols{grid-template-columns:1fr}.tl li{grid-template-columns:1fr;gap:2px}nav a{padding:8px 8px;font-size:.88rem}.brand svg{height:22px}section{padding:64px 0}}
+@media(max-width:560px){header .wrap{flex-direction:column;height:auto;padding-top:10px;padding-bottom:6px;gap:4px}.page{padding-top:92px}.hero{min-height:calc(100vh - 92px)}}
+</style>
+</head>
+<body>
+<canvas id="net" aria-hidden="true"></canvas>
+<header><div class="wrap">
+<a class="brand" href="#accueil" aria-label="NEUROBAT, accueil"><svg viewBox="20 20 375 60" role="img"><title>NEUROBAT</title><path style="fill:var(--ink)" d="M25.81 70.74H32.31V47.13C32.31 45.20 32.29 41.42 32.08 36.29C34.98 41.27 37.35 45.23 38.58 47.16L53.50 70.74H60.76V27.09H54.23V53.08C54.23 54.66 54.29 58.38 54.40 61.54C52.65 58.44 50.71 55.13 49.69 53.49L33.02 27.09H25.81ZM69.90 70.74H99.26V65.03H76.41V51.32H97.56V45.66H76.41V32.80H99.26V27.09H69.90ZM123.54 71.45C134.03 71.45 140.89 64.91 140.89 55.80V27.09H134.41V55.27C134.41 61.25 130.28 65.56 123.54 65.56C116.83 65.56 112.70 61.25 112.70 55.27V27.09H106.23V55.80C106.23 64.91 113.05 71.45 123.54 71.45ZM149.85 70.74H156.35V54.22H166.02C166.11 54.22 166.23 54.22 166.31 54.22L175.02 70.74H182.34L172.91 53.14C178.36 51.17 181.67 46.78 181.67 40.68C181.67 32.33 175.81 27.09 166.46 27.09H149.85ZM156.35 48.68V32.72H166.17C171.79 32.72 175.25 35.76 175.25 40.68C175.25 45.61 171.82 48.68 166.20 48.68Z"/><ellipse cx="227.53" cy="48.92" rx="37.98" ry="25.32" style="fill:var(--soft2);stroke:var(--soft)" stroke-width="3.54"/><path transform="translate(206.65 37.43) scale(1.0444)" style="fill:var(--ink)" d="M20 5L22 0L24 4.5C29 3.5 35 4 40 8Q37.5 9 36.5 13.5Q33.5 11.5 31 15.5Q28.5 13 26 18.5Q23.5 16 22 20L20 22L18 20Q16.5 16 14 18.5Q11.5 13 9 15.5Q6.5 11.5 3.5 13.5Q2.5 9 0 8C5 4 11 3.5 16 4.5L18 0Z"/><path style="fill:var(--soft)" d="M272.96 70.74H291.45C301.38 70.74 306.74 65.73 306.74 58.44C306.74 52.23 302.64 48.48 297.31 47.98V47.92C302.11 46.72 305.13 43.35 305.13 38.31C305.13 31.60 299.86 27.09 290.45 27.09H272.96ZM281.78 63.65V52.02H290.34C294.88 52.02 297.54 54.31 297.54 57.94C297.54 61.57 294.82 63.65 290.19 63.65ZM281.78 45.23V34.18H289.78C293.74 34.18 296.17 36.32 296.17 39.72C296.17 43.09 293.74 45.23 289.78 45.23ZM309.85 70.74H319.57L322.74 61.22H339.06L342.10 70.74H352.09L336.77 27.09H325.17ZM325.17 54.01 326.66 49.50C328.07 45.05 329.42 40.60 331.00 35.18C332.55 40.60 333.90 45.05 335.25 49.50L336.71 54.01ZM354.90 34.83H368.15V70.74H377.17V34.83H390.38V27.09H354.90Z"/></svg></a>
+<nav aria-label="Navigation principale"><a href="#accueil">Accueil</a><a href="#projet">Projet</a><a href="#a-propos">À propos</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main>
+<div class="page" id="p-accueil">
+<div class="wrap hero">
+<h1>Le bâtiment et son réseau, pensés ensemble.</h1>
+<p>Nous réhabilitons des bureaux et concevons leur infrastructure réseau sécurisée dans le même projet, avec un seul interlocuteur.</p>
+<div><a class="btn" href="#projet">Voir le projet</a><a class="btn ghost" href="#contact">Nous contacter</a></div>
+<div class="hint">Faites défiler pour suivre le câblage ↓</div>
+</div>
+
+<section class="glass"><div class="wrap">
+<p class="big">Aujourd’hui, le BTP termine, puis l’informatique perce. <span>Des câbles posés après coup, des prestataires qui ne se parlent pas, une baie en accès libre.</span></p>
+<p class="big">Le réseau d’une entreprise est sa colonne vertébrale. <span>Il mérite d’être conçu avec les murs, pas contre eux.</span></p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Le contenant et le contenu, un seul projet.</h2>
+<div class="cols">
+<div class="card"><h3>Le bâti</h3><p>Réhabilitation de plateaux de bureaux : second œuvre, isolation, cloisonnement, salles techniques, faux planchers.</p></div>
+<div class="card"><h3>Le réseau</h3><p>Chemins de câbles intégrés dès la conception, local serveur protégé, réseau sécurisé sur site et à distance.</p></div>
+</div></div></section>
+
+<section class="glass"><div class="wrap">
+<h2>La méthode</h2>
+<p class="lead">Cinq étapes, une seule équipe et un seul interlocuteur. À chaque étape, le bâti et le réseau sont traités ensemble : rien n’est rajouté après coup.</p>
+<div class="cable long" id="cable"><i></i>
+<div class="step"><span class="num">ÉTAPE 01</span><h3>Audit bâti et réseau</h3>
+<p>Nous visitons vos locaux avec deux regards en même temps. Côté bâti : état des cloisons, faux plafonds et faux planchers, isolation, menuiseries et consommations d’énergie. Côté réseau : baie informatique, chemins de câbles existants, couverture Wi-Fi et équipements connectés (badges, caméras, chauffage piloté), qui sont autant de portes d’entrée possibles.</p>
+<p>Vous recevez un diagnostic unique, où les priorités de travaux et les failles physiques du réseau apparaissent sur le même plan.</p>
+<ul class="out"><li>Relevé des locaux</li><li>Cartographie réseau</li><li>Bilan énergétique</li><li>Rapport de priorités</li></ul></div>
+<div class="step"><span class="num">ÉTAPE 02</span><h3>Conception intégrée</h3>
+<p>Les plans de rénovation et les plans réseau sont dessinés sur la même base. L’emplacement du local technique, le passage des gaines, la position des prises et des bornes Wi-Fi sont décidés en même temps que le cloisonnement et l’isolation.</p>
+<p>Le réseau est découpé dès la conception en zones séparées : postes de travail, invités, équipements du bâtiment. On anticipe au lieu de corriger.</p>
+<ul class="out"><li>Plans d’aménagement</li><li>Schéma réseau</li><li>Chiffrage global</li><li>Planning unique</li></ul></div>
+<div class="step"><span class="num">ÉTAPE 03</span><h3>Travaux coordonnés</h3>
+<p>Un seul planning, un seul chantier. Les câbles sont posés pendant que les cloisons sont ouvertes, les faux planchers accueillent les chemins de câbles prévus, et le local serveur est construit, ventilé et fermé avant l’arrivée des équipements.</p>
+<p>Pas de saignées après coup, pas de goulottes rajoutées, pas de prestataires qui se renvoient la responsabilité.</p>
+<ul class="out"><li>Second œuvre</li><li>Câblage structuré</li><li>Local technique</li><li>Pilotage unique</li></ul></div>
+<div class="step"><span class="num">ÉTAPE 04</span><h3>Tests et mise en service</h3>
+<p>Avant la livraison, tout est vérifié : contrôle du câblage, configuration du pare-feu et du Wi-Fi, droits d’accès, tests d’intrusion de base et réglage des équipements de gestion de l’énergie.</p>
+<ul class="out"><li>Recette du câblage</li><li>Configuration sécurisée</li><li>Tests d’intrusion</li><li>Contrôle énergétique</li></ul></div>
+<div class="step"><span class="num">ÉTAPE 05</span><h3>Remise des clés et suivi</h3>
+<p>Vous récupérez des bureaux basse consommation et cyber-résilients, avec un dossier unique : plans à jour, schéma réseau, procédures d’accès et recommandations. Vos équipes sont formées aux bons réflexes, et nous restons votre interlocuteur pour faire évoluer les locaux et le réseau.</p>
+<ul class="out"><li>Dossier des ouvrages + dossier réseau</li><li>Formation des équipes</li><li>Suivi dans le temps</li></ul></div>
+</div></div></section>
+
+<section><div class="wrap">
+<h2>Deux réglementations, une réponse.</h2>
+<div class="cols">
+<div class="card"><h3>Décret Tertiaire</h3><p>Il impose des seuils de consommation d’énergie pour les bâtiments tertiaires, à l’horizon 2030, 2040 et 2050.</p></div>
+<div class="card"><h3>Directive NIS 2</h3><p>Elle renforce les obligations de sécurité numérique et de résilience des entreprises.</p></div>
+</div></div></section>
+
+<section class="glass"><div class="wrap">
+<h2>Un projet en construction.</h2>
+<p>NEUROBAT est en cours de lancement. Suivez l’avancement ou participez à notre étude.</p>
+<a class="btn" href="#projet">Suivre l’avancement</a>
+</div></section>
+<section class="cta"><div class="wrap"><div class="card cta-card">
+<div><span class="kicker">Contact</span><h3>Un projet de rénovation, une question ?</h3><p>Écrivez-nous : nous vous répondons rapidement.</p></div>
+<a class="btn" href="#contact">Nous contacter</a>
+</div></div></section>
+</div>
+
+<div class="page" id="p-projet">
+<div class="wrap head">
+<span class="tag">Projet à venir</span>
+<h1>Ce que nous allons proposer.</h1>
+<p class="lead" style="margin-top:24px">NEUROBAT n’a pas encore démarré son activité. Cette page présente en détail l’offre que nous préparons : une réhabilitation de bureaux où le bâtiment et le réseau informatique sont conçus, construits et livrés ensemble.</p>
+</div>
+<section class="glass" style="padding:0 0 70px"><div class="wrap">
+
+<div class="feat">
+<div><span class="kicker">Volet 1 · Le bâti</span><h2>Aménagement technique et second œuvre</h2>
+<p>Nous réhabilitons les plateaux de bureaux : cloisons, isolation, faux plafonds, faux planchers techniques, menuiseries intérieures. La différence : chaque élément est pensé pour accueillir le réseau dès le départ.</p>
+<ul class="list"><li>Faux planchers avec chemins de câbles intégrés et boîtes de sol au pied des postes.</li><li>Cloisons équipées de gaines réservées au réseau, pour éviter les goulottes en applique.</li><li>Isolation thermique et acoustique des salles de réunion.</li><li>En option, protection électromagnétique des salles sensibles contre l’interception de signaux.</li></ul>
+<div class="ex"><b>Exemple</b><p>Un open space est réaménagé en îlots : chaque poste se branche sur une boîte de sol reliée au local technique, sans un câble visible.</p></div>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 520 300" role="img" aria-label="Coupe d’un faux plancher technique avec chemin de câbles intégré">
+<text x="20" y="28" class="ti">Coupe : faux plancher technique</text>
+<rect x="20" y="246" width="340" height="34" class="gf"/>
+<line x1="20" y1="246" x2="360" y2="246" class="s" stroke-width="2"/>
+<g class="s" stroke-width="3"><line x1="40" y1="246" x2="40" y2="174"/><line x1="120" y1="246" x2="120" y2="174"/><line x1="200" y1="246" x2="200" y2="174"/><line x1="280" y1="246" x2="280" y2="174"/><line x1="340" y1="246" x2="340" y2="174"/></g>
+<rect x="30" y="212" width="320" height="14" class="b" stroke-width="2"/>
+<g class="b" stroke-width="2"><line x1="34" y1="217" x2="346" y2="217"/><line x1="34" y1="221" x2="346" y2="221"/></g>
+<rect x="20" y="162" width="340" height="12" class="k pf" stroke-width="2"/>
+<g class="s" stroke-width="1.5"><line x1="100" y1="162" x2="100" y2="174"/><line x1="180" y1="162" x2="180" y2="174"/><line x1="260" y1="162" x2="260" y2="174"/></g>
+<path d="M220 212V174" class="b" stroke-width="3"/>
+<rect x="206" y="152" width="28" height="10" class="bf"/>
+<path d="M220 152V108" class="b" stroke-width="2" stroke-dasharray="4 4"/>
+<rect x="130" y="100" width="200" height="8" class="inkf"/>
+<g class="k" stroke-width="3"><line x1="142" y1="108" x2="142" y2="162"/><line x1="318" y1="108" x2="318" y2="162"/></g>
+<rect x="190" y="56" width="62" height="38" rx="3" class="k" stroke-width="2.5"/>
+<line x1="221" y1="94" x2="221" y2="100" class="k" stroke-width="3"/>
+<g class="s" stroke-width="1"><line x1="334" y1="96" x2="374" y2="80"/><line x1="236" y1="157" x2="374" y2="146"/><line x1="362" y1="168" x2="374" y2="174"/><line x1="352" y1="219" x2="374" y2="210"/><line x1="342" y1="232" x2="374" y2="238"/></g>
+<text x="380" y="84">Poste de travail</text>
+<text x="380" y="150" class="tb">Boîte de sol</text>
+<text x="380" y="178">Dalles amovibles</text>
+<text x="380" y="214" class="tb">Chemin de câbles</text>
+<text x="380" y="242">Vérins réglables</text>
+<text x="380" y="270">Dalle existante</text>
+</svg>
+<span class="swipe">← Faites glisser pour voir tout le schéma →</span>
+<figcaption>Schéma de principe : le réseau circule sous le faux plancher, du local technique jusqu’au poste de travail.</figcaption>
+</figure>
+</div>
+
+<div class="feat rev">
+<div><span class="kicker">Volet 2 · La protection physique</span><h2>Un vrai local technique</h2>
+<p>Trop souvent, la baie informatique finit dans un placard ou un couloir, à la portée de tous. Nous la plaçons dans un local conçu pour elle : fermé, ventilé et surveillé.</p>
+<ul class="list"><li>Cloisonnement renforcé et porte à contrôle d’accès par badge.</li><li>Climatisation dédiée et détection incendie.</li><li>Baies verrouillées et alimentation secourue (onduleur).</li><li>Arrivées de câbles protégées sous fourreau.</li></ul>
+<div class="ex"><b>Exemple</b><p>Le serveur d’une PME est installé sous un bureau. Lors du recloisonnement du plateau, nous créons un petit local technique fermé dans un angle, relié à tous les postes par le faux plancher.</p></div>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 520 300" role="img" aria-label="Plan d’un local technique sécurisé">
+<text x="40" y="24" class="ti">Plan : local technique sécurisé</text>
+<path d="M0 205H100V180M0 215H170V180" class="b" stroke-width="3"/>
+<path d="M150 250H40V40H300V250H200" class="k" stroke-width="8"/>
+<path d="M200 250V200" class="k" stroke-width="2"/>
+<path d="M150 250A50 50 0 0 1 200 200" class="s" stroke-width="1.5" stroke-dasharray="4 4"/>
+<rect x="206" y="256" width="12" height="16" class="bf"/>
+<rect x="70" y="70" width="60" height="110" class="k gf" stroke-width="2"/>
+<rect x="140" y="70" width="60" height="110" class="k gf" stroke-width="2"/>
+<g class="s" stroke-width="1"><path d="M76 88H124M76 104H124M76 120H124M76 136H124M76 152H124M146 88H194M146 104H194M146 120H194M146 136H194M146 152H194"/></g>
+<rect x="230" y="52" width="54" height="20" class="k pf" stroke-width="2"/>
+<circle cx="255" cy="150" r="9" class="k" stroke-width="2"/><circle cx="255" cy="150" r="3" class="inkf"/>
+<g class="s" stroke-width="1"><line x1="286" y1="62" x2="316" y2="62"/><line x1="202" y1="110" x2="316" y2="110"/><line x1="266" y1="150" x2="316" y2="150"/><line x1="220" y1="264" x2="316" y2="264"/></g>
+<text x="322" y="66">Climatisation dédiée</text>
+<text x="322" y="114">Baies verrouillées</text>
+<text x="322" y="154">Détection incendie</text>
+<text x="322" y="268" class="tb">Accès par badge</text>
+<text x="40" y="290" class="tb">Arrivées réseau sous fourreau</text>
+</svg>
+<span class="swipe">← Faites glisser pour voir tout le schéma →</span>
+<figcaption>Le local technique est construit et fermé avant l’arrivée des équipements informatiques.</figcaption>
+</figure>
+</div>
+
+<div class="feat">
+<div><span class="kicker">Volet 3 · Le réseau</span><h2>Un réseau sécurisé, sur site et à distance</h2>
+<p>Nous concevons l’infrastructure réseau en même temps que le bâtiment : câblage, Wi-Fi, pare-feu et accès à distance. Le réseau est découpé en zones séparées, pour qu’une faille sur un objet connecté ne donne pas accès aux données de l’entreprise.</p>
+<ul class="list"><li>Zones séparées : collaborateurs, invités, équipements du bâtiment.</li><li>Wi-Fi dimensionné à partir des plans, avec un réseau invité isolé.</li><li>Accès à distance chiffré pour le télétravail.</li><li>Sécurisation des équipements connectés : badges, caméras, chauffage et éclairage pilotés.</li></ul>
+<div class="ex"><b>Exemple</b><p>Le chauffage connecté est isolé dans sa propre zone. S’il est piraté, l’attaquant reste bloqué et n’atteint pas les postes de travail.</p></div>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 520 300" role="img" aria-label="Schéma de segmentation du réseau en trois zones derrière un pare-feu">
+<rect x="20" y="20" width="140" height="36" rx="18" class="k pf" stroke-width="2"/>
+<text x="90" y="43" text-anchor="middle" class="ti">Télétravail</text>
+<rect x="200" y="20" width="120" height="36" rx="18" class="k pf" stroke-width="2"/>
+<text x="260" y="43" text-anchor="middle" class="ti">Internet</text>
+<path d="M90 56C90 95 140 120 190 120" class="b" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="20" y="150" class="tb">Accès distant chiffré</text>
+<path d="M260 56V100" class="s" stroke-width="2"/>
+<rect x="190" y="100" width="140" height="40" rx="4" class="b pf" stroke-width="2.5"/>
+<text x="260" y="125" text-anchor="middle" class="tb">Pare-feu</text>
+<path d="M260 140V170H90V200M260 170V200M260 170H430V200" class="b" stroke-width="2"/>
+<g class="s" stroke-width="1.5" stroke-dasharray="5 4"><rect x="20" y="200" width="140" height="80" rx="6"/><rect x="190" y="200" width="140" height="80" rx="6"/><rect x="360" y="200" width="140" height="80" rx="6"/></g>
+<text x="90" y="230" text-anchor="middle" class="ti">Collaborateurs</text><text x="90" y="252" text-anchor="middle">Postes, serveurs</text>
+<text x="260" y="230" text-anchor="middle" class="ti">Invités</text><text x="260" y="252" text-anchor="middle">Wi-Fi isolé</text>
+<text x="430" y="230" text-anchor="middle" class="ti">Bâtiment</text><text x="430" y="252" text-anchor="middle">Badges, caméras,</text><text x="430" y="268" text-anchor="middle">chauffage piloté</text>
+</svg>
+<span class="swipe">← Faites glisser pour voir tout le schéma →</span>
+<figcaption>Chaque famille d’équipements a sa zone, et le pare-feu contrôle tous les échanges entre elles.</figcaption>
+</figure>
+</div>
+
+<div class="feat rev">
+<div><span class="kicker">Volet 4 · La conformité</span><h2>Décret Tertiaire et NIS 2, traités ensemble</h2>
+<p>Les entreprises doivent réduire la consommation d’énergie de leurs bureaux et, pour celles qui sont concernées, renforcer leur sécurité numérique. Deux obligations, généralement confiées à deux prestataires différents. Nous les traitons dans le même projet.</p>
+<ul class="list"><li>Travaux d’efficacité énergétique : isolation, éclairage, régulation du chauffage et de la climatisation.</li><li>Mesures de sécurité physique et réseau, documentées pour vos démarches de conformité.</li><li>Un dossier unique remis à la livraison.</li></ul>
+</div>
+<figure class="fig">
+<svg viewBox="0 0 520 260" role="img" aria-label="Le Décret Tertiaire et la directive NIS 2 se rejoignent dans un seul projet">
+<circle cx="200" cy="130" r="100" class="k" stroke-width="2"/>
+<circle cx="320" cy="130" r="100" class="b" stroke-width="2.5"/>
+<text x="150" y="124" text-anchor="middle" class="ti">Décret</text><text x="150" y="144" text-anchor="middle" class="ti">Tertiaire</text><text x="150" y="166" text-anchor="middle">Énergie</text>
+<text x="370" y="134" text-anchor="middle" class="ti">NIS 2</text><text x="370" y="156" text-anchor="middle">Cybersécurité</text>
+<text x="260" y="126" text-anchor="middle" class="tb">Un seul</text><text x="260" y="146" text-anchor="middle" class="tb">projet</text>
+</svg>
+<span class="swipe">← Faites glisser pour voir tout le schéma →</span>
+<figcaption>Deux réglementations, un seul chantier et un seul interlocuteur.</figcaption>
+</figure>
+</div>
+
+<div class="feat" style="display:block">
+<span class="kicker">Cas illustratif</span><h2>Exemple : un plateau de bureaux de 350 m²</h2>
+<p class="lead">Une PME s’installe dans un plateau des années 2000 en Île-de-France : cloisons datées, chauffage énergivore et une ancienne baie informatique posée dans le couloir. Voici comment NEUROBAT mènerait le projet.</p>
+<div class="cols" style="margin-top:30px;gap:24px;align-items:start">
+<figure class="fig">
+<svg viewBox="0 0 520 330" role="img" aria-label="Plan d’un plateau de 350 mètres carrés avec le réseau intégré">
+<rect x="20" y="20" width="480" height="290" class="k" stroke-width="3"/>
+<path d="M170 20V80M170 100V135M170 155V235M170 255V310M20 110H170M20 210H170M400 310V290M400 270V250H500" class="k" stroke-width="2"/>
+<g class="s" stroke-width="1.5"><rect x="200" y="62" width="60" height="30"/><rect x="290" y="62" width="60" height="30"/><rect x="380" y="62" width="60" height="30"/><rect x="200" y="140" width="60" height="30"/><rect x="290" y="140" width="60" height="30"/><rect x="380" y="140" width="60" height="30"/><rect x="420" y="282" width="60" height="14"/><rect x="45" y="70" width="100" height="26" rx="13"/></g>
+<path d="M110 262V235H185V40M185 110H470M185 195H470V270M185 50H140M185 160H140" class="b" stroke-width="3"/>
+<g class="bf"><rect x="227" y="107" width="6" height="6"/><rect x="317" y="107" width="6" height="6"/><rect x="407" y="107" width="6" height="6"/><rect x="227" y="192" width="6" height="6"/><rect x="317" y="192" width="6" height="6"/><rect x="407" y="192" width="6" height="6"/></g>
+<rect x="70" y="262" width="22" height="34" class="inkf"/><rect x="98" y="262" width="22" height="34" class="inkf"/>
+<g><circle cx="270" cy="128" r="4" class="bf"/><circle cx="270" cy="128" r="13" class="b" stroke-width="1.5"/><circle cx="400" cy="230" r="4" class="bf"/><circle cx="400" cy="230" r="13" class="b" stroke-width="1.5"/><circle cx="60" cy="140" r="4" class="bf"/><circle cx="60" cy="140" r="13" class="b" stroke-width="1.5"/></g>
+<text x="95" y="48" text-anchor="middle" class="ti">Réunion</text>
+<text x="105" y="190" text-anchor="middle" class="ti">Direction</text>
+<text x="95" y="240" text-anchor="middle" class="ti">Local tech.</text>
+<text x="320" y="48" text-anchor="middle" class="ti">Open space</text>
+<text x="450" y="272" text-anchor="middle" class="ti">Accueil</text>
+</svg>
+<span class="swipe">← Faites glisser pour voir tout le schéma →</span>
+<div class="legend"><span>Chemins de câbles intégrés</span><span class="w">Bornes Wi-Fi</span><span class="r">Baies</span></div>
+<figcaption>Plan de principe après travaux : tout part du local technique fermé.</figcaption>
+</figure>
+<figure class="fig">
+<svg viewBox="0 0 520 330" role="img" aria-label="Comparaison avant et après travaux">
+<text x="20" y="26" class="ti">Avant</text>
+<rect x="20" y="40" width="220" height="250" class="s" stroke-width="2"/>
+<path d="M20 80H130V130H240M60 290V230H180V170" class="s" stroke-width="5"/>
+<path d="M70 290C80 250 120 270 130 230S190 200 210 240" class="s" stroke-width="2"/>
+<path d="M30 200C70 210 90 180 120 200" class="s" stroke-width="2"/>
+<rect x="196" y="250" width="34" height="40" class="gf"/>
+<rect x="196" y="250" width="34" height="40" class="s" stroke-width="1.5"/>
+<text x="30" y="72">Goulottes en applique</text>
+<text x="30" y="160">Câbles au sol</text>
+<text x="105" y="314">Baie en accès libre</text>
+<text x="280" y="26" class="ti">Après</text>
+<rect x="280" y="40" width="220" height="250" class="s" stroke-width="2"/>
+<path d="M300 280V60H480M300 170H420" class="b" stroke-width="2.5" stroke-dasharray="6 5"/>
+<g class="bf"><rect x="337" y="167" width="7" height="7"/><rect x="377" y="167" width="7" height="7"/><rect x="417" y="167" width="7" height="7"/></g>
+<rect x="420" y="220" width="70" height="60" class="k" stroke-width="4"/>
+<rect x="440" y="232" width="18" height="38" class="inkf"/>
+<rect x="410" y="250" width="6" height="12" class="bf"/>
+<text x="312" y="90">Câbles dans les cloisons</text>
+<text x="312" y="200" class="tb">Boîtes de sol</text>
+<text x="380" y="314">Local fermé, badge</text>
+</svg>
+<span class="swipe">← Faites glisser pour voir tout le schéma →</span>
+<figcaption>Le même espace : plus aucun câble apparent, et une baie enfin protégée.</figcaption>
+</figure>
+</div>
+<div class="grid3">
+<div class="card"><h3>1. Audit</h3><p>Relevé du plateau, état du chauffage et de l’isolation, inventaire du réseau existant et des équipements connectés.</p></div>
+<div class="card"><h3>2. Travaux</h3><p>Recloisonnement, création d’un local technique fermé, faux plancher câblé dans l’open space, isolation et éclairage basse consommation.</p></div>
+<div class="card"><h3>3. Livraison</h3><p>Réseau découpé en zones, Wi-Fi invité isolé, accès distant chiffré, et un dossier unique bâti + réseau.</p></div>
+</div>
+</div>
+
+<div class="feat" style="display:block">
+<span class="kicker">Pour qui ?</span><h2>Les entreprises qui rénovent ou emménagent</h2>
+<div class="grid3">
+<div class="card"><h3>Propriétaires occupants</h3><p>Vous rénovez vos propres bureaux et devez atteindre les objectifs du Décret Tertiaire.</p></div>
+<div class="card"><h3>Locataires</h3><p>Vous emménagez dans de nouveaux locaux et voulez un réseau propre et sécurisé dès le premier jour.</p></div>
+<div class="card"><h3>Gestionnaires immobiliers</h3><p>Vous valorisez un plateau vacant en le livrant prêt à l’emploi, performant et sécurisé.</p></div>
+</div>
+<p style="margin-top:24px">Nos premiers projets viseront des plateaux de 200 à 500 m² en Île-de-France.</p>
+</div>
+
+<div class="feat" style="display:block">
+<span class="kicker">Avancement</span><h2>Où en est le projet</h2>
+<p class="lead">En cours de déploiement.</p>
+</div>
+
+</div></section>
+<section class="cta"><div class="wrap"><div class="card cta-card">
+<div><span class="kicker">Contact</span><h3>Un projet de rénovation, une question ?</h3><p>Écrivez-nous : nous vous répondons rapidement.</p></div>
+<a class="btn" href="#contact">Nous contacter</a>
+</div></div></section>
+</div>
+
+<div class="page" id="p-a-propos">
+<div class="wrap head">
+<h1>À propos.</h1>
+<p class="big" style="margin-top:28px">L’un sait construire, l’autre sait sécuriser. <span>NEUROBAT réunit deux métiers qui, aujourd’hui, ne se parlent pas.</span></p>
+<div class="duo">
+<div class="card"><span class="role">Bâtiment · Ingénierie travaux</span><h3>Tony Laranjeiro Domingues</h3><p>Apprenti ingénieur travaux chez SMAC et élève ingénieur BTP au CESI de Nanterre. Formé sur le terrain, du gros œuvre à l’enveloppe du bâtiment (façades et étanchéité), il porte la partie bâti de NEUROBAT : diagnostic des locaux, conception, chiffrage et pilotage des travaux.</p></div>
+<div class="card"><span class="role">Réseau · Cybersécurité</span><h3>Lorenzo Biffi</h3><p>Étudiant en 5ᵉ année d’ingénierie, spécialisé en cybersécurité. Il porte la partie numérique de NEUROBAT : architecture réseau, segmentation, sécurisation des accès et des équipements connectés, et accompagnement vers la conformité NIS 2.</p></div>
+</div>
+<div style="margin-top:70px">
+<span class="kicker">Objectif</span>
+<h2>Faire du réseau un lot du chantier à part entière.</h2>
+<p class="lead">Notre ambition : devenir en Île-de-France la référence de la réhabilitation de bureaux sécurisés, capable de livrer des locaux à la fois performants sur le plan énergétique et protégés sur le plan numérique.</p>
+<p class="lead">Aujourd’hui, la sécurité informatique arrive après les travaux, une fois les murs fermés. Nous voulons qu’elle soit prévue dès le premier plan, au même titre que l’isolation ou l’électricité. Pour nos clients, cela signifie moins d’intervenants, moins de reprises, et des bureaux prêts pour les exigences de demain.</p>
+<div class="grid3">
+<div class="card"><h3>Un seul interlocuteur</h3><p>Une équipe qui pilote le bâti et le réseau, du diagnostic à la remise des clés.</p></div>
+<div class="card"><h3>La sécurité dès la conception</h3><p>Un réseau prévu dans les plans, pas ajouté après coup.</p></div>
+<div class="card"><h3>Des bureaux durables</h3><p>Moins de consommation, plus de résilience, et des locaux qui évoluent avec l’entreprise.</p></div>
+</div>
+</div>
+</div>
+<section class="cta"><div class="wrap"><div class="card cta-card">
+<div><span class="kicker">Contact</span><h3>Un projet de rénovation, une question ?</h3><p>Écrivez-nous : nous vous répondons rapidement.</p></div>
+<a class="btn" href="#contact">Nous contacter</a>
+</div></div></section>
+</div>
+
+<div class="page" id="p-contact">
+<div class="wrap head">
+<h1>Contact.</h1>
+<p style="margin-top:24px">Une question, un projet de rénovation, ou un avis pour notre étude ? Écrivez-nous.</p>
+<div class="cols" style="margin-top:30px;align-items:start">
+<form id="f">
+<label>Nom<input name="n" required autocomplete="name"></label>
+<label>E-mail<input name="e" type="email" required autocomplete="email"></label>
+<label>Message<textarea name="m" required></textarea></label>
+<div><button class="btn" type="submit">Envoyer le message</button></div>
+</form>
+<div class="card"><h3>Coordonnées</h3><p>Tony Laranjeiro Domingues<br>Île-de-France<br><a href="mailto:Tony.laranjeirodomingues@viacesi.fr">Tony.laranjeirodomingues@viacesi.fr</a></p></div>
+</div></div></div>
+</main>
+
+<footer><div class="wrap">NEUROBAT – projet de réhabilitation tertiaire et sécurité réseau. Île-de-France. Site en construction.</div></footer>
+
+<script>
+(function(){
+var pages=['accueil','projet','a-propos','contact'];
+function route(force){
+var h=force||(location.hash||'#accueil').slice(1);if(pages.indexOf(h)<0)h='accueil';
+pages.forEach(function(p){document.getElementById('p-'+p).classList.toggle('on',p===h)});document.body.setAttribute('data-page',h);
+document.querySelectorAll('nav a').forEach(function(a){if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+window.scrollTo(0,0);scrollFx();
+}
+window.addEventListener('hashchange',function(){route()});
+document.addEventListener('click',function(e){
+var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+var h=a.getAttribute('href').slice(1);if(pages.indexOf(h)<0)return;
+e.preventDefault();try{history.pushState(null,'','#'+h)}catch(err){}
+route(h);
+});
+window.addEventListener('popstate',function(){route()});
+
+var cable=document.getElementById('cable'),fill=cable.querySelector('i'),steps=cable.querySelectorAll('.step');
+function scrollFx(){
+var r=cable.getBoundingClientRect(),vh=window.innerHeight,p=(vh*.6-r.top)/r.height;p=Math.max(0,Math.min(1,p));
+fill.style.height=(p*(r.height-12))+'px';
+steps.forEach(function(s){var sr=s.getBoundingClientRect();s.classList.toggle('on',sr.top<vh*.6)});
+}
+window.addEventListener('scroll',scrollFx,{passive:true});window.addEventListener('resize',scrollFx);
+
+document.getElementById('f').addEventListener('submit',function(e){
+e.preventDefault();var d=new FormData(this);
+location.href='mailto:Tony.laranjeirodomingues@viacesi.fr?subject='+encodeURIComponent('Contact NEUROBAT – '+d.get('n'))+'&body='+encodeURIComponent(d.get('m')+'\n\n'+d.get('n')+' ('+d.get('e')+')');
+});
+
+var c=document.getElementById('net'),x=c.getContext('2d'),W,H,P=[],B=[],S=[],mx=-999,my=-999,T=0,dpr=Math.min(window.devicePixelRatio||1,2);
+var still=false; // animation toujours active (mouvement lent et discret)
+function size(){W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+var n=Math.min(95,Math.round(W*H/17000));P=[];for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5});
+city()}
+/* Page Contact : rangée d'immeubles de bureaux avec leur réseau intégré */
+function city(){B=[];var base=H-28,fh=Math.max(24,Math.min(34,H*.042));
+var specs=[[.02,.15,.36],[.19,.17,.52],[.38,.13,.3],[.53,.19,.6],[.74,.12,.42],[.88,.11,.5]];
+specs.forEach(function(s,i){var bw=W*s[1],bh=Math.round(H*s[2]/fh)*fh,b={x:Math.round(W*s[0]),w:Math.round(bw),y:base-bh,h:bh,fh:fh,base:base};
+b.rx=b.x+Math.round(b.w*(i%2?.3:.65));b.br=[];
+for(var f=1;f*fh<bh;f++)if(f%2===i%2)b.br.push({y:base-f*fh+fh*.5,to:(f%4<2)?b.x+b.w*.12:b.x+b.w*.88});
+B.push(b)})}
+window.addEventListener('resize',size);
+window.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+function drawCity(rgb,q,link){
+var blue='47,123,255',i,b,f;
+x.lineWidth=1;x.strokeStyle='rgba('+rgb+',.35)';x.beginPath();x.moveTo(0,B[0].base+.5);x.lineTo(W,B[0].base+.5);x.stroke();
+/* câble enterré qui relie les immeubles */
+x.strokeStyle='rgba('+blue+',.35)';x.setLineDash([6,5]);x.beginPath();x.moveTo(B[0].rx,B[0].base+14);x.lineTo(B[B.length-1].rx,B[0].base+14);x.stroke();x.setLineDash([]);
+for(i=0;i<B.length;i++){b=B[i];
+x.fillStyle='rgba(18,20,23,.9)';x.fillRect(b.x,b.y,b.w,b.h);
+x.strokeStyle='rgba('+rgb+',.32)';x.lineWidth=1.2;x.strokeRect(b.x+.5,b.y+.5,b.w,b.h);
+x.lineWidth=1;
+for(f=1;f*b.fh<b.h;f++){var fy=b.base-f*b.fh+.5;x.strokeStyle='rgba('+rgb+',.12)';x.beginPath();x.moveTo(b.x,fy);x.lineTo(b.x+b.w,fy);x.stroke()}
+var cols=Math.max(2,Math.floor(b.w/22)),gap=b.w/cols;x.strokeStyle='rgba('+rgb+',.13)';
+for(f=0;f*b.fh<b.h-4;f++)for(var k=0;k<cols;k++){var wx=b.x+k*gap+gap*.3,wy=b.base-(f+1)*b.fh+b.fh*.28;if(Math.abs(wx+gap*.2-b.rx)<gap*.5)continue;x.strokeRect(wx+.5,wy+.5,gap*.4,b.fh*.44)}
+/* colonne montante + branchements d'étage */
+x.strokeStyle='rgba('+blue+',.55)';x.lineWidth=1.5;x.beginPath();x.moveTo(b.rx,b.base+14);x.lineTo(b.rx,b.y-18);x.stroke();
+x.lineWidth=1;b.br.forEach(function(r,j){x.strokeStyle='rgba('+blue+',.3)';x.beginPath();x.moveTo(b.rx,r.y);x.lineTo(r.to,r.y);x.stroke();
+x.fillStyle='rgba('+blue+',.6)';x.fillRect(r.to-2.5,r.y-2.5,5,5);
+var a=.45+.35*Math.sin(T*.03+i+j);x.fillStyle='rgba(79,195,255,'+a+')';x.beginPath();x.arc(b.rx,r.y,2.4,0,6.283);x.fill()});
+/* antenne sur le toit */
+var g=.5+.4*Math.sin(T*.025+i*1.7);x.fillStyle='rgba(79,195,255,'+g+')';x.beginPath();x.arc(b.rx,b.y-18,3.2,0,6.283);x.fill();
+x.strokeStyle='rgba(79,195,255,'+g*.35+')';x.beginPath();x.arc(b.rx,b.y-18,8,0,6.283);x.stroke()}
+/* liaisons entre toits et avec les nœuds du ciel */
+x.strokeStyle='rgba('+blue+',.22)';
+for(i=1;i<B.length;i++){var A=B[i-1];b=B[i];x.beginPath();x.moveTo(A.rx,A.y-18);x.quadraticCurveTo((A.rx+b.rx)/2,Math.min(A.y,b.y)-60,b.rx,b.y-18);x.stroke()}
+for(i=0;i<B.length;i++){b=B[i];for(var j=0;j<q.length;j++){var dx=q[j][0]-b.rx,dy=q[j][1]-(b.y-18),d=Math.sqrt(dx*dx+dy*dy);
+if(d<link*1.3){x.strokeStyle='rgba('+rgb+','+(1-d/(link*1.3))*.4+')';x.beginPath();x.moveTo(b.rx,b.y-18);x.lineTo(q[j][0],q[j][1]);x.stroke()}}}}
+function draw(){T++;
+var rgb=getComputedStyle(document.documentElement).getPropertyValue('--net').trim()||'189,189,189';
+var contact=document.body.getAttribute('data-page')==='contact';
+var dh=Math.max(1,document.documentElement.scrollHeight-H),pr=Math.min(1,scrollY/dh),link=105+120*pr,off=contact?0:scrollY*.14;
+x.clearRect(0,0,W,H);var q=[];
+if(contact){var gr=x.createLinearGradient(0,0,W*.35,H);gr.addColorStop(0,'#09090a');gr.addColorStop(.55,'#16181b');gr.addColorStop(1,'#26292e');x.fillStyle=gr;x.fillRect(0,0,W,H);
+if(B.length)drawCity(rgb,[],link);requestAnimationFrame(draw);return}
+for(var i=0;i<P.length;i++){var p=P[i];if(!still){p.vx+=(Math.random()-.5)*.02;p.vy+=(Math.random()-.5)*.02;var sp=Math.sqrt(p.vx*p.vx+p.vy*p.vy);if(sp>.35){p.vx*=.35/sp;p.vy*=.35/sp}if(sp<.08){p.vx*=1.1;p.vy*=1.1}p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0}
+var py=((p.y-off)%H+H)%H;q.push([p.x,py])}
+for(i=0;i<q.length;i++){
+for(var j=i+1;j<q.length;j++){var dx=q[i][0]-q[j][0],dy=q[i][1]-q[j][1],d=Math.sqrt(dx*dx+dy*dy);
+if(d<link){x.strokeStyle='rgba('+rgb+','+(1-d/link)*.32+')';x.lineWidth=1;x.beginPath();x.moveTo(q[i][0],q[i][1]);x.lineTo(q[j][0],q[j][1]);x.stroke()}}
+var mdx=q[i][0]-mx,mdy=q[i][1]-my,md=Math.sqrt(mdx*mdx+mdy*mdy);
+if(md<170){x.strokeStyle='rgba('+rgb+','+(1-md/170)*.6+')';x.beginPath();x.moveTo(q[i][0],q[i][1]);x.lineTo(mx,my);x.stroke()}
+x.fillStyle='rgba('+rgb+',.75)';x.beginPath();x.arc(q[i][0],q[i][1],1.8,0,6.283);x.fill()}
+spark(q,link);
+if(!still)requestAnimationFrame(draw)}
+/* courant électrique discret entre nœuds reliés */
+function near(q,i,ex,link){var o=[];for(var j=0;j<q.length;j++){if(j===i||j===ex)continue;var dx=q[i][0]-q[j][0],dy=q[i][1]-q[j][1];if(dx*dx+dy*dy<link*link*.8)o.push(j)}return o.length?o[Math.floor(Math.random()*o.length)]:-1}
+function zap(A,B,t0,t1){
+var px=A[1]-B[1],py=B[0]-A[0],L=Math.sqrt(px*px+py*py)||1,n=6,m,f,j;px/=L;py/=L;
+x.save();x.lineCap='round';x.shadowColor='rgba(47,123,255,.5)';x.shadowBlur=4;
+x.strokeStyle='rgba(79,195,255,.5)';x.lineWidth=1.2;x.beginPath();
+for(m=0;m<=n;m++){f=t0+(t1-t0)*m/n;j=(m===0||m===n)?0:(Math.random()-.5)*2.5;var X=A[0]+(B[0]-A[0])*f+px*j,Y=A[1]+(B[1]-A[1])*f+py*j;if(m)x.lineTo(X,Y);else x.moveTo(X,Y)}
+x.stroke();
+if(t1<1){x.fillStyle='rgba(214,242,255,.55)';x.beginPath();x.arc(A[0]+(B[0]-A[0])*t1,A[1]+(B[1]-A[1])*t1,1.6,0,6.283);x.fill()}
+x.restore()}
+function spark(q,link){
+if(!q.length)return;
+if(!S.length&&Math.random()<.006){var a=Math.floor(Math.random()*q.length),b=near(q,a,-1,link);if(b>=0)S.push({a:a,b:b,t:0,h:Math.floor(Math.random()*3)})}
+for(var s=S.length-1;s>=0;s--){var k=S[s],A=q[k.a],B=q[k.b];
+if(!A||!B){S.splice(s,1);continue}
+var dx=B[0]-A[0],dy=B[1]-A[1];if(dx*dx+dy*dy>link*link){S.splice(s,1);continue}
+k.t+=.03;zap(A,B,Math.max(0,k.t-.5),Math.min(1,k.t));
+if(k.t>=1){var nx=k.h>0?near(q,k.b,k.a,link):-1;
+if(nx>=0)S[s]={a:k.b,b:nx,t:0,h:k.h-1};else if(k.t>=1.5)S.splice(s,1)}}}
+size();draw();
+route();
+})();
+</script>
+</body>
+</html>
