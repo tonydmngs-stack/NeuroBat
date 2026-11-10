@@ -23,11 +23,22 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - Mise en page large (`.wrap` max 90rem) : accueil en 2 colonnes (titre + encadré « En bref »), méthode avec titre fixe à gauche et étapes à droite ; tout repasse sur 1 colonne sous 1000 px.
 - Thème noir conservé (essais clair et anthracite refusés). Fond : nœuds qui dérivent lentement + courant électrique discret (1 à la fois, opacité réduite). Page Contact seule : rangée d’immeubles au trait avec réseau intégré (colonnes montantes, branchements, antennes) sur dégradé noir → anthracite, sans nœuds, fonction `city()`/`drawCity()`. Pas de bandes pleine largeur qui masquent le fond.
 
-## À faire (proposé, pas encore validé par Tony)
-1. Renommer/garder `index.html` et mettre en ligne (GitHub Pages, Netlify ou Cloudflare Pages).
-2. Remplacer l'adresse du formulaire (`Tony.laranjeirodomingues@viacesi.fr`) par une adresse professionnelle.
-3. Vérifier et sourcer les chiffres cités (48 %, 4 M m², -50 %) avant toute diffusion externe.
-4. Si le site grossit : séparer CSS/JS, ajouter des images (photos de chantier), et éventuellement un vrai backend de formulaire.
+## Mise en ligne et dépôt
+- Dépôt GitHub public : https://github.com/tonydmngs-stack/neurobat (branche `main`). `.gitignore` bloque les documents
+  personnels (`docs-source/`, `prive/`, fichiers Office), identifiants et fichiers système : ne jamais publier de données perso.
+- **GitHub Pages : validé par Tony.** Adresse prévue : https://tonydmngs-stack.github.io/neurobat/
+  Le fichier `.nojekyll` est en place (site servi tel quel). Reste à cocher l'activation, que Claude ne peut pas faire
+  depuis une session cloud : Settings → Pages → « Deploy from a branch » → `main` / `/ (root)` → Save.
+  Une fois actif, chaque push sur `main` met le site à jour en ~1 min.
+- Nom de domaine `neurobat.fr` : à acheter seulement au lancement de l’entreprise (décision de Tony), puis le brancher sur Pages.
+
+## À faire
+1. ~~Mettre en ligne~~ → validé, activation de GitHub Pages à cocher par Tony (voir ci-dessus).
+2. Adresse e-mail : un Gmail NEUROBAT est en cours de création (adresse à confirmer par Tony). Remplacer alors
+   `Tony.laranjeirodomingues@viacesi.fr` dans la page Contact et dans le `mailto:` du formulaire.
+   Plus tard, au lancement : `contact@neurobat.fr`.
+3. Vérifier et sourcer les chiffres cités (48 %, 4 M m², -50 %) avant toute diffusion externe (proposé, non validé).
+4. Si le site grossit : séparer CSS/JS, ajouter des images (photos de chantier), et éventuellement un vrai backend de formulaire (proposé, non validé).
 
 ## Conventions
 - Réponses et textes du site en français.
