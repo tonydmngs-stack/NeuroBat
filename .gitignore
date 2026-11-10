@@ -1,2 +1,37 @@
-# Documents personnels (adresse, téléphone, date de naissance) : ne pas publier
+# ─────────────────────────────────────────────────────────────
+# Fichiers à NE JAMAIS envoyer sur GitHub (le dépôt est public)
+# ─────────────────────────────────────────────────────────────
+
+# Documents personnels (adresse, téléphone, date de naissance…)
 docs-source/
+prive/
+*.docx
+*.xlsx
+*.pptx
+
+# Identifiants, mots de passe, clés
+.env
+.env.*
+*.key
+*.pem
+secrets*
+
+# Fichiers créés automatiquement par Windows et macOS
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*
+
+# Copies de travail et sauvegardes
+*.bak
+*.tmp
+*-copie.*
+*-old.*
+brouillons/
+
+# Éditeurs de code et outils
+.vscode/
+.idea/
+*.swp
+node_modules/
+.claude/settings.local.json
