@@ -26,15 +26,14 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 ## Mise en ligne et dépôt
 - Dépôt GitHub public : https://github.com/tonydmngs-stack/neurobat (branche `main`). `.gitignore` bloque les documents
   personnels (`docs-source/`, `prive/`, fichiers Office), identifiants et fichiers système : ne jamais publier de données perso.
-- **GitHub Pages : validé par Tony.** Adresse prévue : https://tonydmngs-stack.github.io/neurobat/
-  Le fichier `.nojekyll` est en place (site servi tel quel). Reste à cocher l'activation, que Claude ne peut pas faire
-  depuis une session cloud : Settings → Pages → « Deploy from a branch » → `main` / `/ (root)` → Save.
-  Une fois actif, chaque push sur `main` met le site à jour en ~1 min.
+- **Site en ligne (GitHub Pages, activé le 10/11/2026)** : https://tonydmngs-stack.github.io/neurobat/
+  Source : branche `main`, dossier racine ; `.nojekyll` en place (site servi tel quel).
+  Chaque push sur `main` redéploie le site en ~1 min.
 - Nom de domaine `neurobat.fr` : à acheter seulement au lancement de l’entreprise (décision de Tony), puis le brancher sur Pages.
 
 ## À faire
-1. ~~Mettre en ligne~~ → validé, activation de GitHub Pages à cocher par Tony (voir ci-dessus).
-2. Adresse e-mail : un Gmail NEUROBAT est en cours de création (adresse à confirmer par Tony). Remplacer alors
+1. ~~Mettre en ligne~~ → fait (GitHub Pages actif).
+2. Adresse e-mail : un Gmail NEUROBAT sera créé par Tony (pas encore fait). Remplacer alors
    `Tony.laranjeirodomingues@viacesi.fr` dans la page Contact et dans le `mailto:` du formulaire.
    Plus tard, au lancement : `contact@neurobat.fr`.
 3. Vérifier et sourcer les chiffres cités (48 %, 4 M m², -50 %) avant toute diffusion externe (proposé, non validé).
