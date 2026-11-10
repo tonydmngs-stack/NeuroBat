@@ -21,7 +21,7 @@ h1{font-size:clamp(2.5rem,7.2vw,5.4rem)}
 h2{font-size:clamp(1.8rem,4.2vw,3rem);margin-bottom:.5em}
 h3{font-size:1.2rem;letter-spacing:-.01em;margin-bottom:.4em}
 p{margin:0 0 1em;max-width:60ch;color:var(--muted)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(24px,4vw,64px)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 header{position:fixed;top:0;left:0;right:0;z-index:5;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
@@ -107,6 +107,19 @@ section.cta{padding:20px 0 90px}
 .cta-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:36px;border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
 .cta-card h3{font-size:1.5rem}.cta-card p{margin:0}
 .swipe{display:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:clamp(40px,5vw,96px);align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.6vw,5.6rem)}
+.brief{padding:30px 30px 10px}
+.brief .bi{display:grid;grid-template-columns:44px 1fr;gap:6px;padding:16px 0;border-top:1px solid var(--line)}
+.brief .bi b{color:var(--blue2);font-size:.85rem;letter-spacing:.1em;padding-top:3px}
+.brief h3{font-size:1.05rem;margin-bottom:.3em}.brief p{font-size:.95rem;margin:0}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,96px)}
+.pair .big{max-width:none}
+.method{display:grid;grid-template-columns:minmax(260px,.75fr) 1.6fr;gap:clamp(40px,5vw,96px);align-items:start}
+.method-head{position:sticky;top:110px}
+.method .cable{margin-top:8px}
+@media(min-width:1500px){body{font-size:18px}.lead{font-size:1.18rem}.step h3{font-size:1.45rem}}
+@media(max-width:1000px){.hero-grid,.pair,.method{grid-template-columns:1fr}.brief{display:none}.method-head{position:static}.method .cable{margin-top:40px}}
 @media(max-width:820px){
 .wrap{padding-left:16px;padding-right:16px}
 .page .head{padding-top:48px}
@@ -137,17 +150,23 @@ section.cta{padding:20px 0 90px}
 
 <main>
 <div class="page" id="p-accueil">
-<div class="wrap hero">
+<div class="wrap hero"><div class="hero-grid"><div>
 <h1>Le bâtiment et son réseau, pensés ensemble.</h1>
 <p>Nous réhabilitons des bureaux et concevons leur infrastructure réseau sécurisée dans le même projet, avec un seul interlocuteur.</p>
 <div><a class="btn" href="#projet">Voir le projet</a><a class="btn ghost" href="#contact">Nous contacter</a></div>
 <div class="hint">Faites défiler pour suivre le câblage ↓</div>
 </div>
+<aside class="card brief" aria-label="En bref">
+<span class="kicker">En bref</span>
+<div class="bi"><b>01</b><div><h3>Un seul interlocuteur</h3><p>Le bâti et le réseau pilotés par la même équipe, du diagnostic à la remise des clés.</p></div></div>
+<div class="bi"><b>02</b><div><h3>La sécurité dès la conception</h3><p>Le réseau est prévu dans les plans, pas ajouté une fois les murs fermés.</p></div></div>
+<div class="bi"><b>03</b><div><h3>Deux obligations, une réponse</h3><p>Décret Tertiaire et directive NIS 2 traités dans le même projet.</p></div></div>
+</aside></div></div>
 
 <section class="glass"><div class="wrap">
-<p class="big">Aujourd’hui, le BTP termine, puis l’informatique perce. <span>Des câbles posés après coup, des prestataires qui ne se parlent pas, une baie en accès libre.</span></p>
+<div class="pair"><p class="big">Aujourd’hui, le BTP termine, puis l’informatique perce. <span>Des câbles posés après coup, des prestataires qui ne se parlent pas, une baie en accès libre.</span></p>
 <p class="big">Le réseau d’une entreprise est sa colonne vertébrale. <span>Il mérite d’être conçu avec les murs, pas contre eux.</span></p>
-</div></section>
+</div></div></section>
 
 <section><div class="wrap">
 <h2>Le contenant et le contenu, un seul projet.</h2>
@@ -157,8 +176,10 @@ section.cta{padding:20px 0 90px}
 </div></div></section>
 
 <section class="glass"><div class="wrap">
+<div class="method"><div class="method-head">
 <h2>La méthode</h2>
 <p class="lead">Cinq étapes, une seule équipe et un seul interlocuteur. À chaque étape, le bâti et le réseau sont traités ensemble : rien n’est rajouté après coup.</p>
+</div>
 <div class="cable long" id="cable"><i></i>
 <div class="step"><span class="num">ÉTAPE 01</span><h3>Audit bâti et réseau</h3>
 <p>Nous visitons vos locaux avec deux regards en même temps. Côté bâti : état des cloisons, faux plafonds et faux planchers, isolation, menuiseries et consommations d’énergie. Côté réseau : baie informatique, chemins de câbles existants, couverture Wi-Fi et équipements connectés (badges, caméras, chauffage piloté), qui sont autant de portes d’entrée possibles.</p>
@@ -178,7 +199,7 @@ section.cta{padding:20px 0 90px}
 <div class="step"><span class="num">ÉTAPE 05</span><h3>Remise des clés et suivi</h3>
 <p>Vous récupérez des bureaux basse consommation et cyber-résilients, avec un dossier unique : plans à jour, schéma réseau, procédures d’accès et recommandations. Vos équipes sont formées aux bons réflexes, et nous restons votre interlocuteur pour faire évoluer les locaux et le réseau.</p>
 <ul class="out"><li>Dossier des ouvrages + dossier réseau</li><li>Formation des équipes</li><li>Suivi dans le temps</li></ul></div>
-</div></div></section>
+</div></div></div></section>
 
 <section><div class="wrap">
 <h2>Deux réglementations, une réponse.</h2>
