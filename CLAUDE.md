@@ -8,7 +8,7 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - `index.html` : **version de référence retenue par Tony**. Site mono-fichier HTML/CSS/JS, sans dépendance
   hormis la police Inter (Google Fonts). 4 pages en routage par hash : `#accueil`, `#projet` (tag « Projet à venir »),
   `#a-propos`, `#contact`. Fond canvas « réseau de nœuds » (`#net`), câble qui se remplit au scroll dans la section
-  « La méthode » (`scrollFx()`), thème noir fixe, formulaire de contact envoyé directement via **Web3Forms** (clé d’accès publique dans le JS, ~250 messages/mois en gratuit, URL déclarée : le lien GitHub Pages) vers `neurobat.contact@gmail.com` ; champ anti-robot caché ; en cas d’échec, lien de repli `mailto:`. Au passage à `neurobat.fr`, mettre à jour l’URL du site dans Web3Forms.
+  « La méthode » (`scrollFx()`), thème noir fixe, formulaire de contact envoyé directement via **Web3Forms** (clé d’accès publique dans le JS, ~250 messages/mois en gratuit, URL déclarée : le lien GitHub Pages) vers `neurobat.contact@gmail.com` ; protection anti-robot : champ piège caché + case « Je ne suis pas un robot » (doit être cochée par une vraie action souris/doigt/clavier, et au moins 3 s après le début de la saisie ; sinon envoi bloqué ou faux succès silencieux pour les robots) ; en cas d’échec, lien de repli `mailto:`. Au passage à `neurobat.fr`, mettre à jour l’URL du site dans Web3Forms.
 - `variantes/parcours-2d.html` : autre version (canvas 2D vue de dessus, câble qui avance de pièce en pièce).
   Mise de côté, pas retenue pour l'instant. La 3D (Three.js) et le serpent SVG ont été essayés et abandonnés.
 - `logo/` : logo final **noir et gris** (chauve-souris dans un projecteur ovale à la place du « O » de NEURO).

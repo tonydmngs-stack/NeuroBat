@@ -66,6 +66,12 @@ label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
 input,textarea{width:100%;min-width:0;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
 textarea{min-height:140px;resize:vertical}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);opacity:0;pointer-events:none}
+label.human{display:flex;align-items:center;gap:12px;width:fit-content;padding:12px 16px;border:1px solid var(--line);border-radius:4px;background:var(--panel);cursor:pointer;user-select:none}
+label.human input{position:absolute;opacity:0;width:1px;height:1px}
+label.human .box{width:22px;height:22px;flex:none;border:2px solid var(--soft);border-radius:4px;display:grid;place-items:center;transition:.2s}
+label.human input:checked+.box{background:var(--blue);border-color:var(--blue)}
+label.human input:checked+.box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg)}
+label.human input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:3px}
 .fstat{margin:0;font-size:.95rem;min-height:1.4em}.fstat.ok{color:var(--blue2)}.fstat.ko{color:#ff8a8a}
 .btn:disabled{opacity:.6;cursor:wait}
 footer{border-top:1px solid var(--line);padding:30px 0;font-size:.88rem;color:var(--muted)}
@@ -484,6 +490,7 @@ section.cta{padding:20px 0 90px}
 <label>E-mail<input name="e" type="email" required autocomplete="email"></label>
 <label>Message<textarea name="m" required></textarea></label>
 <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label class="human"><input type="checkbox" id="human" required><span class="box" aria-hidden="true"></span><span>Je ne suis pas un robot</span></label>
 <div><button class="btn" type="submit">Envoyer le message</button></div>
 <p class="fstat" id="fstat" role="status" aria-live="polite"></p>
 </form>
@@ -521,15 +528,21 @@ window.addEventListener('scroll',scrollFx,{passive:true});window.addEventListene
 
 /* Formulaire : envoi direct via Web3Forms vers neurobat.contact@gmail.com (clé publique, sans risque) */
 var form=document.getElementById('f'),fst=document.getElementById('fstat'),fbtn=form.querySelector('button');
+/* Anti-robot : la case doit être cochée par une vraie action (souris, doigt ou clavier), au moins 3 s après le début de la saisie */
+var human=document.getElementById('human'),humanOk=false,t0=0;
+human.addEventListener('change',function(ev){humanOk=human.checked&&ev.isTrusted});
+form.addEventListener('input',function(ev){if(!t0&&ev.isTrusted)t0=Date.now()});
 function mailFallback(d){location.href='mailto:neurobat.contact@gmail.com?subject='+encodeURIComponent('Contact NEUROBAT – '+d.get('n'))+'&body='+encodeURIComponent(d.get('m')+'\n\n'+d.get('n')+' ('+d.get('e')+')')}
 form.addEventListener('submit',function(e){
 e.preventDefault();var d=new FormData(form);
-if(d.get('botcheck'))return;
+fst.className='fstat';
+if(d.get('botcheck')||!humanOk){form.reset();humanOk=false;t0=0;fst.className='fstat ok';fst.textContent='Message envoyé, merci ! Nous vous répondrons rapidement.';return}
+if(!t0||Date.now()-t0<3000){fst.className='fstat ko';fst.textContent='Merci de patienter quelques secondes avant d’envoyer votre message.';return}
 fbtn.disabled=true;fbtn.textContent='Envoi…';fst.className='fstat';fst.textContent='';
 fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
 body:JSON.stringify({access_key:'c73db5cc-0533-49f9-b4c1-e08ddda5ce62',subject:'Contact NEUROBAT – '+d.get('n'),from_name:'Site NEUROBAT',name:d.get('n'),email:d.get('e'),message:d.get('m'),botcheck:false})})
 .then(function(r){return r.json().then(function(j){if(!r.ok||!j.success)throw new Error(j.message||r.status)})})
-.then(function(){form.reset();fst.className='fstat ok';fst.textContent='Message envoyé, merci ! Nous vous répondrons rapidement.'})
+.then(function(){form.reset();humanOk=false;t0=0;fst.className='fstat ok';fst.textContent='Message envoyé, merci ! Nous vous répondrons rapidement.'})
 .catch(function(){fst.className='fstat ko';fst.innerHTML='L’envoi n’a pas abouti. <a href="#" id="fmail">Ouvrir votre messagerie</a> ou écrivez-nous à neurobat.contact@gmail.com.';
 document.getElementById('fmail').addEventListener('click',function(ev){ev.preventDefault();mailFallback(d)})})
 .then(function(){fbtn.disabled=false;fbtn.textContent='Envoyer le message'});
