@@ -29,6 +29,9 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
   de test pour les clients exigeants ; outil Ekahau.
 - **LAN** (Lorenzo) : architecture réseau (nombre de switchs, routeurs… à partir de l’étude Wi-Fi), installation des baies et
   équipements (routeur, switchs, pare-feu), tirage des câbles avec l’équipe bâtiment, configuration ; option : forfait maintenance.
+- Message côté réseau sur le site : « un réseau qui tient la charge » (couverture étudiée puis vérifiée, réseau dimensionné,
+  câblage évolutif). Pare-feu et Wi-Fi invités séparé du réseau de l’entreprise sont cités (configuration des équipements).
+  Accueil : bloc « Deux exigences, une réponse » = Décret Tertiaire + réseau fiable ; plus aucune promesse NIS 2 / « cyber-résilient ».
 - **Hors périmètre, à ne pas proposer sur le site** : contrôle d’accès / badges, caméras, sécurisation de l’éclairage, du
   chauffage et des objets connectés, tests d’intrusion, accès distant / VPN, protection électromagnétique, conformité NIS 2.
 
