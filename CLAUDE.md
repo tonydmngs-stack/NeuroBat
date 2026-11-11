@@ -8,7 +8,7 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - `index.html` : **version de référence retenue par Tony**. Site mono-fichier HTML/CSS/JS, sans dépendance
   hormis la police Inter (Google Fonts). 4 pages en routage par hash : `#accueil`, `#projet` (tag « Projet à venir »),
   `#a-propos`, `#contact`. Fond canvas « réseau de nœuds » (`#net`), câble qui se remplit au scroll dans la section
-  « La méthode » (`scrollFx()`), thème noir fixe, formulaire de contact en `mailto:` vers `neurobat.contact@gmail.com`.
+  « La méthode » (`scrollFx()`), thème noir fixe, formulaire de contact envoyé directement via **Web3Forms** (clé d’accès publique dans le JS, ~250 messages/mois en gratuit, URL déclarée : le lien GitHub Pages) vers `neurobat.contact@gmail.com` ; champ anti-robot caché ; en cas d’échec, lien de repli `mailto:`. Au passage à `neurobat.fr`, mettre à jour l’URL du site dans Web3Forms.
 - `variantes/parcours-2d.html` : autre version (canvas 2D vue de dessus, câble qui avance de pièce en pièce).
   Mise de côté, pas retenue pour l'instant. La 3D (Three.js) et le serpent SVG ont été essayés et abandonnés.
 - `logo/` : logo final **noir et gris** (chauve-souris dans un projecteur ovale à la place du « O » de NEURO).
@@ -47,9 +47,9 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 ## À faire
 1. ~~Mettre en ligne~~ → fait (GitHub Pages actif).
 2. ~~Adresse e-mail~~ → fait : `neurobat.contact@gmail.com` (Gmail gratuit, créé le 11/11/2026), utilisée dans la page
-   Contact et dans le `mailto:` du formulaire. Au lancement : passer à `contact@neurobat.fr`.
+   Contact ; le formulaire y envoie les messages via Web3Forms. Au lancement : passer à `contact@neurobat.fr`.
 3. Vérifier et sourcer les chiffres cités (48 %, 4 M m², -50 %) avant toute diffusion externe (proposé, non validé).
-4. Si le site grossit : séparer CSS/JS, ajouter des images (photos de chantier), et éventuellement un vrai backend de formulaire (proposé, non validé).
+4. Si le site grossit : séparer CSS/JS, ajouter des images (photos de chantier), (proposé, non validé). Formulaire : fait (Web3Forms).
 
 ## Conventions
 - Réponses et textes du site en français.

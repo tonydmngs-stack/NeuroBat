@@ -65,6 +65,9 @@ label>*{min-width:0}
 label{display:grid;gap:6px;font-weight:500;font-size:.95rem}
 input,textarea{width:100%;min-width:0;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--ink)}
 textarea{min-height:140px;resize:vertical}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fstat{margin:0;font-size:.95rem;min-height:1.4em}.fstat.ok{color:var(--blue2)}.fstat.ko{color:#ff8a8a}
+.btn:disabled{opacity:.6;cursor:wait}
 footer{border-top:1px solid var(--line);padding:30px 0;font-size:.88rem;color:var(--muted)}
 /* Méthode détaillée */
 .lead{font-size:1.12rem;max-width:62ch}
@@ -464,7 +467,9 @@ section.cta{padding:20px 0 90px}
 <label>Nom<input name="n" required autocomplete="name"></label>
 <label>E-mail<input name="e" type="email" required autocomplete="email"></label>
 <label>Message<textarea name="m" required></textarea></label>
+<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 <div><button class="btn" type="submit">Envoyer le message</button></div>
+<p class="fstat" id="fstat" role="status" aria-live="polite"></p>
 </form>
 <div class="card"><h3>Coordonnées</h3><p>Tony Laranjeiro Domingues<br>Île-de-France<br><a href="mailto:neurobat.contact@gmail.com">neurobat.contact@gmail.com</a></p></div>
 </div></div></div>
@@ -498,9 +503,20 @@ steps.forEach(function(s){var sr=s.getBoundingClientRect();s.classList.toggle('o
 }
 window.addEventListener('scroll',scrollFx,{passive:true});window.addEventListener('resize',scrollFx);
 
-document.getElementById('f').addEventListener('submit',function(e){
-e.preventDefault();var d=new FormData(this);
-location.href='mailto:neurobat.contact@gmail.com?subject='+encodeURIComponent('Contact NEUROBAT – '+d.get('n'))+'&body='+encodeURIComponent(d.get('m')+'\n\n'+d.get('n')+' ('+d.get('e')+')');
+/* Formulaire : envoi direct via Web3Forms vers neurobat.contact@gmail.com (clé publique, sans risque) */
+var form=document.getElementById('f'),fst=document.getElementById('fstat'),fbtn=form.querySelector('button');
+function mailFallback(d){location.href='mailto:neurobat.contact@gmail.com?subject='+encodeURIComponent('Contact NEUROBAT – '+d.get('n'))+'&body='+encodeURIComponent(d.get('m')+'\n\n'+d.get('n')+' ('+d.get('e')+')')}
+form.addEventListener('submit',function(e){
+e.preventDefault();var d=new FormData(form);
+if(d.get('botcheck'))return;
+fbtn.disabled=true;fbtn.textContent='Envoi…';fst.className='fstat';fst.textContent='';
+fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+body:JSON.stringify({access_key:'c73db5cc-0533-49f9-b4c1-e08ddda5ce62',subject:'Contact NEUROBAT – '+d.get('n'),from_name:'Site NEUROBAT',name:d.get('n'),email:d.get('e'),message:d.get('m'),botcheck:false})})
+.then(function(r){return r.json().then(function(j){if(!r.ok||!j.success)throw new Error(j.message||r.status)})})
+.then(function(){form.reset();fst.className='fstat ok';fst.textContent='Message envoyé, merci ! Nous vous répondrons rapidement.'})
+.catch(function(){fst.className='fstat ko';fst.innerHTML='L’envoi n’a pas abouti. <a href="#" id="fmail">Ouvrir votre messagerie</a> ou écrivez-nous à neurobat.contact@gmail.com.';
+document.getElementById('fmail').addEventListener('click',function(ev){ev.preventDefault();mailFallback(d)})})
+.then(function(){fbtn.disabled=false;fbtn.textContent='Envoyer le message'});
 });
 
 var c=document.getElementById('net'),x=c.getContext('2d'),W,H,P=[],B=[],S=[],mx=-999,my=-999,T=0,dpr=Math.min(window.devicePixelRatio||1,2);
