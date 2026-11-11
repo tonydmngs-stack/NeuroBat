@@ -24,15 +24,16 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - Thème noir conservé (essais clair et anthracite refusés). Fond : nœuds qui dérivent lentement + courant électrique discret (1 à la fois, opacité réduite). Page Contact seule : rangée d’immeubles au trait avec réseau intégré (colonnes montantes, branchements, antennes) sur dégradé noir → anthracite, sans nœuds, fonction `city()`/`drawCity()`. Pas de bandes pleine largeur qui masquent le fond.
 
 ## Mise en ligne et dépôt
-- Dépôt GitHub public : https://github.com/tonydmngs-stack/neurobat (branche `main`). `.gitignore` bloque les documents
+- Dépôt GitHub public : https://github.com/tonydmngs-stack/NeuroBat (branche `main`, recréé le 11/11/2026 avec tout l’historique). `.gitignore` bloque les documents
   personnels (`docs-source/`, `prive/`, fichiers Office), identifiants et fichiers système : ne jamais publier de données perso.
-- **Site en ligne (GitHub Pages, activé le 10/11/2026)** : https://tonydmngs-stack.github.io/neurobat/
-  Source : branche `main`, dossier racine ; `.nojekyll` en place (site servi tel quel).
-  Chaque push sur `main` redéploie le site en ~1 min.
+- **GitHub Pages : à réactiver par Tony** (le dépôt a été supprimé puis recréé le 11/11/2026, ce qui a coupé Pages).
+  Settings → Pages → « Deploy from a branch » → `main` / `/ (root)` → Save. Claude ne peut pas le faire depuis une session cloud.
+  Adresse une fois actif : https://tonydmngs-stack.github.io/NeuroBat/ (majuscules comprises : l’ancien lien en `neurobat` ne marche plus).
+  `.nojekyll` en place (site servi tel quel). Chaque push sur `main` redéploie le site en ~1 min.
 - Nom de domaine `neurobat.fr` : à acheter seulement au lancement de l’entreprise (décision de Tony), puis le brancher sur Pages.
 
 ## À faire
-1. ~~Mettre en ligne~~ → fait (GitHub Pages actif).
+1. Mise en ligne : réactiver GitHub Pages (voir ci-dessus).
 2. Adresse e-mail : un Gmail NEUROBAT sera créé par Tony (pas encore fait). Remplacer alors
    `Tony.laranjeirodomingues@viacesi.fr` dans la page Contact et dans le `mailto:` du formulaire.
    Plus tard, au lancement : `contact@neurobat.fr`.
