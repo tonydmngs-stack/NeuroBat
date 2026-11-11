@@ -51,6 +51,13 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 3. Vérifier et sourcer les chiffres cités (48 %, 4 M m², -50 %) avant toute diffusion externe (proposé, non validé).
 4. Si le site grossit : séparer CSS/JS, ajouter des images (photos de chantier), (proposé, non validé). Formulaire : fait (Web3Forms).
 
+## Le jour du lancement (déploiement hors GitHub / passage à `neurobat.fr`) — check-list
+- **Web3Forms : mettre à jour l’adresse du site** dans les réglages du compte Web3Forms (compte lié à
+  `neurobat.contact@gmail.com`). Aujourd’hui l’URL déclarée est https://tonydmngs-stack.github.io/NeuroBat/ ;
+  sans cette mise à jour, le formulaire de contact du nouveau site risque de ne plus envoyer les messages.
+- Après le changement, envoyer un message de test depuis la page Contact du nouveau site et vérifier sa réception.
+- Passer l’adresse de contact à `contact@neurobat.fr` (page Contact + Web3Forms).
+
 ## Conventions
 - Réponses et textes du site en français.
 - Garder le site fonctionnel en ouvrant simplement `index.html` dans un navigateur (pas d'étape de build).
