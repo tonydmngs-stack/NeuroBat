@@ -1,7 +1,7 @@
 # NEUROBAT — site vitrine
 
 Projet d'entreprise de Tony Laranjeiro Domingues (apprenti ingénieur travaux, FISA BTP 24-27, CESI Nanterre) :
-réhabilitation tertiaire hybride **BTP + cybersécurité** (bureaux), avec son associé Lorenzo Biffi (5ᵉ année, cybersécurité).
+réhabilitation tertiaire hybride **BTP + cybersécurité** (bureaux), avec son associé Lorenzo Biffi (5ᵉ année à Oteria, école spécialisée en cybersécurité).
 Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature « Option Entrepreneuriat »).
 
 ## État actuel
@@ -22,6 +22,15 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - Responsive testé de 320 px (petit téléphone) à 3440 px (ultra-large), tablettes portrait/paysage incluses. Taille de texte fluide (`html{font-size:clamp(15px,…,22px)}`) : tout ce qui est en rem grandit avec l’écran.
 - Mise en page large (`.wrap` max 90rem) : accueil en 2 colonnes (titre + encadré « En bref »), méthode avec titre fixe à gauche et étapes à droite ; tout repasse sur 1 colonne sous 1000 px.
 - Thème noir conservé (essais clair et anthracite refusés). Fond : nœuds qui dérivent lentement + courant électrique discret (1 à la fois, opacité réduite). Page Contact seule : rangée d’immeubles au trait avec réseau intégré (colonnes montantes, branchements, antennes) sur dégradé noir → anthracite, sans nœuds, fonction `city()`/`drawCity()`. Pas de bandes pleine largeur qui masquent le fond.
+
+## Périmètre des services (validé le 11/11/2026, d’après le document réseau de Lorenzo)
+- **Bâti** (Tony) : réhabilitation, second œuvre, faux planchers, cloisons, local technique, efficacité énergétique (Décret Tertiaire).
+- **Wi-Fi** (Lorenzo) : conseil sur le choix des bornes ; étude de couverture (« survey ») sur plan, ou sur site avec une borne
+  de test pour les clients exigeants ; outil Ekahau.
+- **LAN** (Lorenzo) : architecture réseau (nombre de switchs, routeurs… à partir de l’étude Wi-Fi), installation des baies et
+  équipements (routeur, switchs, pare-feu), tirage des câbles avec l’équipe bâtiment, configuration ; option : forfait maintenance.
+- **Hors périmètre, à ne pas proposer sur le site** : contrôle d’accès / badges, caméras, sécurisation de l’éclairage, du
+  chauffage et des objets connectés, tests d’intrusion, accès distant / VPN, protection électromagnétique, conformité NIS 2.
 
 ## Mise en ligne et dépôt
 - Dépôt GitHub public : https://github.com/tonydmngs-stack/NeuroBat (branche `main`, recréé le 11/11/2026 avec tout l’historique). `.gitignore` bloque les documents
