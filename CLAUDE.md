@@ -48,7 +48,12 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 1. ~~Mettre en ligne~~ → fait (GitHub Pages actif).
 2. ~~Adresse e-mail~~ → fait : `neurobat.contact@gmail.com` (Gmail gratuit, créé le 11/11/2026), utilisée dans la page
    Contact ; le formulaire y envoie les messages via Web3Forms. Au lancement : passer à `contact@neurobat.fr`.
-3. Vérifier et sourcer les chiffres cités (48 %, 4 M m², -50 %) avant toute diffusion externe (proposé, non validé).
+3. ~~Chiffres~~ → vérifiés le 11/11/2026. Sur le site, seul le Décret Tertiaire est cité : texte précisé (≥ 1 000 m² tertiaires,
+   -40 % 2030 / -50 % 2040 / -60 % 2050 vs année de référence ; un plateau plus petit est concerné si le bâtiment dépasse le seuil).
+   Les chiffres de l’étude de marché ne sont PAS sur le site et ne doivent pas y être ajoutés tels quels :
+   « 48 % des cyberattaques sur PME/ETI » (presse ; l’ANSSI donne ~37 % des victimes de rançongiciels → à revérifier dans le
+   Panorama ANSSI), « 4 M m² obsolètes (IEIF) » (non retrouvé ; ordres de grandeur trouvés : 5,6 à 6,1 M m² de bureaux vacants
+   en IDF), « -50 % de carbone (ADEME) » (pas de chiffre ADEME unique ; « >50 % des émissions liées aux matériaux évitées »).
 4. Si le site grossit : séparer CSS/JS, ajouter des images (photos de chantier), (proposé, non validé). Formulaire : fait (Web3Forms).
 
 ## Le jour du lancement (déploiement hors GitHub / passage à `neurobat.fr`) — check-list
