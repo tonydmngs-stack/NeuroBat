@@ -23,6 +23,11 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - Mise en page large (`.wrap` max 90rem) : accueil en 2 colonnes (titre + encadré « En bref »), méthode avec titre fixe à gauche et étapes à droite ; tout repasse sur 1 colonne sous 1000 px.
 - Thème noir conservé (essais clair et anthracite refusés). Fond : nœuds qui dérivent lentement + courant électrique discret (1 à la fois, opacité réduite). Page Contact seule : rangée d’immeubles au trait avec réseau intégré (colonnes montantes, branchements, antennes) sur dégradé noir → anthracite, sans nœuds, fonction `city()`/`drawCity()`. Pas de bandes pleine largeur qui masquent le fond.
 
+## Page À propos
+- Fiches Tony (bâti) et Lorenzo (Wi-Fi/LAN, Oteria), bloc « Objectif », puis bloc **RSE · Notre vision** (ajouté le 11/11/2026) :
+  6 principes présentés comme une vision, PAS comme des actions en cours (réhabiliter plutôt que reconstruire, juste besoin,
+  sécurité des équipes, transmettre/alternance, travailler local, transparence). Ne pas ajouter de chiffres ou labels non réels.
+
 ## Périmètre des services (validé le 11/11/2026, d’après le document réseau de Lorenzo)
 - **Bâti** (Tony) : réhabilitation, second œuvre, faux planchers, cloisons, local technique, efficacité énergétique (Décret Tertiaire).
 - **Wi-Fi** (Lorenzo) : conseil sur le choix des bornes ; étude de couverture (« survey ») sur plan, ou sur site avec une borne
