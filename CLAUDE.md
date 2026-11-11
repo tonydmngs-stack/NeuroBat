@@ -26,14 +26,14 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 ## Mise en ligne et dépôt
 - Dépôt GitHub public : https://github.com/tonydmngs-stack/NeuroBat (branche `main`, recréé le 11/11/2026 avec tout l’historique). `.gitignore` bloque les documents
   personnels (`docs-source/`, `prive/`, fichiers Office), identifiants et fichiers système : ne jamais publier de données perso.
-- **GitHub Pages : à réactiver par Tony** (le dépôt a été supprimé puis recréé le 11/11/2026, ce qui a coupé Pages).
-  Settings → Pages → « Deploy from a branch » → `main` / `/ (root)` → Save. Claude ne peut pas le faire depuis une session cloud.
-  Adresse une fois actif : https://tonydmngs-stack.github.io/NeuroBat/ (majuscules comprises : l’ancien lien en `neurobat` ne marche plus).
+- **Site en ligne (GitHub Pages, réactivé le 11/11/2026)** : https://tonydmngs-stack.github.io/NeuroBat/
+  (majuscules comprises : l’ancien lien en `neurobat` ne marche plus). Source : `main`, dossier racine.
+  L’activation de Pages se fait dans Settings → Pages ; Claude ne peut pas la faire depuis une session cloud.
   `.nojekyll` en place (site servi tel quel). Chaque push sur `main` redéploie le site en ~1 min.
 - Nom de domaine `neurobat.fr` : à acheter seulement au lancement de l’entreprise (décision de Tony), puis le brancher sur Pages.
 
 ## À faire
-1. Mise en ligne : réactiver GitHub Pages (voir ci-dessus).
+1. ~~Mettre en ligne~~ → fait (GitHub Pages actif).
 2. Adresse e-mail : un Gmail NEUROBAT sera créé par Tony (pas encore fait). Remplacer alors
    `Tony.laranjeirodomingues@viacesi.fr` dans la page Contact et dans le `mailto:` du formulaire.
    Plus tard, au lancement : `contact@neurobat.fr`.
