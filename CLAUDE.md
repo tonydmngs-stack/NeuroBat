@@ -1,7 +1,7 @@
 # NEUROBAT — site vitrine
 
 Projet d'entreprise de Tony Laranjeiro Domingues (apprenti ingénieur travaux, FISA BTP 24-27, CESI Nanterre) :
-réhabilitation tertiaire hybride **BTP + cybersécurité** (bureaux), avec son associé Lorenzo Biffi (5ᵉ année à Oteria, école spécialisée en cybersécurité).
+réhabilitation tertiaire hybride **BTP + réseau informatique (Wi-Fi / LAN)** (bureaux), avec son associé Lorenzo Biffi (5ᵉ année à Oteria, école spécialisée en cybersécurité).
 Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature « Option Entrepreneuriat »).
 
 ## État actuel
@@ -37,6 +37,8 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
 - Message côté réseau sur le site : « un réseau qui tient la charge » (couverture étudiée puis vérifiée, réseau dimensionné,
   câblage évolutif). Pare-feu et Wi-Fi invités séparé du réseau de l’entreprise sont cités (configuration des équipements).
   Accueil : bloc « Deux exigences, une réponse » = Décret Tertiaire + réseau fiable ; plus aucune promesse NIS 2 / « cyber-résilient ».
+  Vocabulaire aligné partout (11/11/2026) : « réseau informatique / bien connecté / fiable », plus « sécurisé / protégé » ;
+  accroche À propos : « L’un sait construire, l’autre sait connecter ». « Sécurité des équipes » (chantier) reste.
 - **Hors périmètre, à ne pas proposer sur le site** : contrôle d’accès / badges, caméras, sécurisation de l’éclairage, du
   chauffage et des objets connectés, tests d’intrusion, accès distant / VPN, protection électromagnétique, conformité NIS 2.
 
