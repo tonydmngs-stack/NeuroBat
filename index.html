@@ -72,6 +72,11 @@ label.human .box{width:22px;height:22px;flex:none;border:2px solid var(--soft);b
 label.human input:checked+.box{background:var(--blue);border-color:var(--blue)}
 label.human input:checked+.box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg)}
 label.human input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:3px}
+.legal h2{font-size:clamp(1.25rem,2.2vw,1.6rem);margin:2em 0 .6em}
+.legal p{max-width:70ch}
+.legal a,.fnote a,.foot a{color:var(--blue2)}
+.fnote{margin:0;font-size:.85rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
 .fstat{margin:0;font-size:.95rem;min-height:1.4em}.fstat.ok{color:var(--blue2)}.fstat.ko{color:#ff8a8a}
 .btn:disabled{opacity:.6;cursor:wait}
 footer{border-top:1px solid var(--line);padding:30px 0;font-size:.88rem;color:var(--muted)}
@@ -491,18 +496,47 @@ section.cta{padding:20px 0 90px}
 <label>Message<textarea name="m" required></textarea></label>
 <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label class="human"><input type="checkbox" id="human" required><span class="box" aria-hidden="true"></span><span>Je ne suis pas un robot</span></label>
+<p class="fnote">Vos informations servent uniquement à vous répondre. <a href="#mentions">En savoir plus</a></p>
 <div><button class="btn" type="submit">Envoyer le message</button></div>
 <p class="fstat" id="fstat" role="status" aria-live="polite"></p>
 </form>
 <div class="card"><h3>Coordonnées</h3><p>Tony Laranjeiro Domingues<br>Île-de-France<br><a href="mailto:neurobat.contact@gmail.com">neurobat.contact@gmail.com</a></p></div>
 </div></div></div>
+<div class="page" id="p-mentions">
+<div class="wrap head legal">
+<h1>Mentions légales.</h1>
+<p class="lead" style="margin-top:24px">Dernière mise à jour : 12 novembre 2026.</p>
+
+<h2>Éditeur du site</h2>
+<p>Ce site est édité à titre personnel par <b>Tony Laranjeiro Domingues</b>, porteur du projet NEUROBAT avec Lorenzo Biffi. NEUROBAT est un projet d’entreprise en cours de préparation : aucune société n’est encore immatriculée.</p>
+<p>Contact : <a href="mailto:neurobat.contact@gmail.com">neurobat.contact@gmail.com</a></p>
+<p>Directeur de la publication : Tony Laranjeiro Domingues.</p>
+
+<h2>Hébergement</h2>
+<p>Le site est hébergé par <b>GitHub, Inc.</b> (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — <a href="https://github.com" rel="noopener">github.com</a>.</p>
+
+<h2>Propriété intellectuelle</h2>
+<p>Les textes, le logo NEUROBAT, les schémas et la mise en page de ce site sont la propriété de leurs auteurs. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>
+
+<h2 id="confidentialite">Données personnelles</h2>
+<p><b>Ce qui est collecté :</b> uniquement les informations que vous saisissez dans le formulaire de contact (nom, adresse e-mail, message).</p>
+<p><b>Pourquoi :</b> pour répondre à votre demande, et rien d’autre. Vos données ne sont ni vendues, ni utilisées pour de la publicité.</p>
+<p><b>Qui les reçoit :</b> uniquement les porteurs du projet NEUROBAT. Le message transite par <b>Web3Forms</b> (service d’envoi de formulaires) et arrive dans une boîte <b>Gmail</b> (Google). Ces prestataires peuvent traiter les données en dehors de l’Union européenne.</p>
+<p><b>Combien de temps :</b> le temps de l’échange, puis au plus 3 ans après notre dernier contact.</p>
+<p><b>Vos droits :</b> vous pouvez demander l’accès, la rectification ou la suppression de vos données, ou vous opposer à leur utilisation, en écrivant à <a href="mailto:neurobat.contact@gmail.com">neurobat.contact@gmail.com</a>. Vous pouvez aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>).</p>
+
+<h2>Cookies</h2>
+<p>Ce site ne dépose aucun cookie et n’utilise aucun outil de mesure d’audience. La police d’écriture (Inter) est chargée depuis les serveurs de Google Fonts : votre navigateur transmet donc votre adresse IP à Google lors de la visite.</p>
+</div>
+</div>
+
 </main>
 
-<footer><div class="wrap">NEUROBAT – projet de réhabilitation tertiaire et réseau informatique. Île-de-France. Site en construction.</div></footer>
+<footer><div class="wrap foot">NEUROBAT – projet de réhabilitation tertiaire et réseau informatique. Île-de-France. Site en construction.<a href="#mentions">Mentions légales et confidentialité</a></div></footer>
 
 <script>
 (function(){
-var pages=['accueil','projet','a-propos','contact'];
+var pages=['accueil','projet','a-propos','contact','mentions'];
 function route(force){
 var h=force||(location.hash||'#accueil').slice(1);if(pages.indexOf(h)<0)h='accueil';
 pages.forEach(function(p){document.getElementById('p-'+p).classList.toggle('on',p===h)});document.body.setAttribute('data-page',h);
