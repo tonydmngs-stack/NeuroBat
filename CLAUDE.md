@@ -9,10 +9,8 @@ Contexte détaillé : `docs-source/` (étude de marché + dossier de candidature
   hormis la police Inter (Google Fonts). 4 pages en routage par hash : `#accueil`, `#projet` (tag « Projet à venir »),
   `#a-propos`, `#contact`, + `#mentions` (mentions légales et confidentialité, lien dans le pied de page et sous le formulaire, pas dans le menu). Fond canvas « réseau de nœuds » (`#net`), câble qui se remplit au scroll dans la section
   « La méthode » (`scrollFx()`), thème noir fixe, formulaire de contact envoyé directement via **Web3Forms** (clé d’accès publique dans le JS, ~250 messages/mois en gratuit, URL déclarée : le lien GitHub Pages) vers `neurobat.contact@gmail.com` ; protection anti-robot : champ piège caché + case « Je ne suis pas un robot » (doit être cochée par une vraie action souris/doigt/clavier, et au moins 3 s après le début de la saisie ; sinon envoi bloqué ou faux succès silencieux pour les robots) ; en cas d’échec, lien de repli `mailto:`. Au passage à `neurobat.fr`, mettre à jour l’URL du site dans Web3Forms.
-- `variantes/` : vidé le 12/11/2026 (ancienne variante 2D supprimée, récupérable dans l’historique Git). Contient
-  `variantes/CLAUDE.md`, **règles d’identité obligatoires pour toute variante** (identité « dossier de chantier », loin de
-  l’esthétique IA), et `variantes/dossier-chantier.html`, première variante selon ces règles (proposition, non validée).
-  En ligne : https://tonydmngs-stack.github.io/NeuroBat/variantes/dossier-chantier.html
+- Variantes : l’ancienne variante 2D et la variante « dossier de chantier » (papier/encre, 12/11/2026) ont été essayées
+  puis **refusées par Tony** ; dossier `variantes/` supprimé (tout reste dans l’historique Git). **On garde le site actuel.**
 - `logo/` : logo final **noir et gris** (chauve-souris dans un projecteur ovale à la place du « O » de NEURO).
   `neurobat-logo-clair.svg` (pour fond clair), `neurobat-logo-sombre.svg` / `-avec-fond.svg` (fond sombre),
   `neurobat-icone.svg`. Lettres converties en tracés : pas de police nécessaire.

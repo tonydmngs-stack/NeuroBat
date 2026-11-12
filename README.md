@@ -4,6 +4,5 @@ Site vitrine de NEUROBAT : réhabilitation de bureaux et réseau informatique (W
 
 - `index.html` : le site (un seul fichier, à ouvrir directement dans un navigateur).
 - `logo/` : logos NEUROBAT (versions claire, sombre, icône).
-- `variantes/` : propositions de nouveau design (règles dans `variantes/CLAUDE.md`).
 - lien ouverture https://tonydmngs-stack.github.io/NeuroBat/
 
